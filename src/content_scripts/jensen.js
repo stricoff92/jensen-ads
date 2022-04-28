@@ -52,6 +52,7 @@ const scanForAds = () => {
     }
     log("google ad frames", googleFrames);
 
+    // Replace iframes with imgs
     for(let i=0; i<googleFrames.length; i++) {
         let frame = googleFrames[i];
         let fileName = getFileName([frame.width, frame.height]);
