@@ -5,11 +5,9 @@ document.addEventListener("DOMContentLoaded", function(event) {
     });
 
     document.getElementById("enabled-checkbox").addEventListener("click", ()=> {
+        const active = document.getElementById("enabled-checkbox").checked;
         setTimeout(()=>{
-            const payload = {
-                active: document.getElementById("enabled-checkbox").checked
-            };
-            chrome.storage.local.set(payload);
+            chrome.storage.local.set({ active });
         }, 10);
     });
 });
