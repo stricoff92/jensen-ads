@@ -29,7 +29,9 @@
   "web_accessible_resources": [
     {
       "resources": [
+        "/src/img/r45_160x600.jpg",
         "/src/img/j31_160x600.jpg",
+        "/src/img/r44_160x600.jpg",
         "/src/img/j18_160x600.jpg",
         "/src/img/j12_160x600.jpg",
         "/src/img/j13_160x600.png",
@@ -50,6 +52,7 @@
         "/src/img/j42_300x600.jpg",
         "/src/img/j4_300x600.jpg",
         "/src/img/j24_300x600.jpg",
+        "/src/img/r43_300x600.jpg",
         "/src/img/j2_300x600.png",
         "/src/img/j7_300x600.png",
         "/src/img/j1_300x600.png",

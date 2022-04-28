@@ -9,7 +9,6 @@ const log = (text, obj) => {
 }
 log("hi");
 
-let scanning = false;
 const main = () => {
     log("main()");
     scanForAds()
@@ -137,6 +136,23 @@ function isAdIframe(frame) {
     if((frame.title || "").toLowerCase().indexOf("advertisement") != -1) {
         return true;
     }
+    const srcParts = [
+        "doubleclick",
+        "2mdn",
+        "criteo",
+        "yimg",
+    ];
+    for(let i=0; i<srcParts.length; i++) {
+        if((frame.src || "").toLowerCase().indexOf(srcParts[i]) != -1) {
+            return true;
+        }
+    }
+
+    console.log({notAnAdFrame:{
+        title: frame.title,
+        id: frame.id,
+        src: frame.src,
+    }})
     return false;
 }
 
