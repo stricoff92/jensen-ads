@@ -20,8 +20,20 @@ const fileNameToSizeArray = (name) => {
     return name.split(".")[0].split("_")[1].split("x");
 }
 
-const scanForAds = () => {
+
+const getActive = async () => new Promise(resolve => {
+    chrome.storage.local.get(['active'], results => {
+        resolve(results.active);
+    });
+});
+
+const scanForAds = async () => {
+    const active = await getActive();
+    if(!active) {
+        return;
+    }
     log("scanForAds()");
+
     /* Array<Element>
         returns array of iframes
     */
@@ -38,8 +50,6 @@ const scanForAds = () => {
             fileNameToSizeArray(war.resources[i])
         );
     }
-
-    console.log({sizes})
 
     // Find frames that have an IAB ad size
     const sizedFrames = [];

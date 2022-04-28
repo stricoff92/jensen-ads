@@ -12,7 +12,8 @@
   ],
   "permissions": [
     "activeTab",
-    "tabs"
+    "tabs",
+    "storage"
   ],
   "content_scripts": [
     {
@@ -41,7 +42,8 @@
         "/src/img/j8_300x600.png",
         "/src/img/j15_320x50.png",
         "/src/img/j9_728x90.png",
-        "/src/img/j16_970x250.jpg"
+        "/src/img/j16_970x250.jpg",
+        "/src/img/j17_970x250.jpg"
       ],
       "matches": [
         "http://*/*",
