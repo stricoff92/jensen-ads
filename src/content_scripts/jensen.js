@@ -141,6 +141,7 @@ function isAdIframe(frame) {
         "2mdn",
         "criteo",
         "yimg",
+        "safeframe",
     ];
     for(let i=0; i<srcParts.length; i++) {
         if((frame.src || "").toLowerCase().indexOf(srcParts[i]) != -1) {

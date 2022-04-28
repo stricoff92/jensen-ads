@@ -67,7 +67,11 @@
         "/src/img/j28_970x250.jpg",
         "/src/img/j39_970x250.png",
         "/src/img/j40_970x250.png",
-        "/src/img/j41_970x250.png"
+        "/src/img/j41_970x250.png",
+        "/src/img/j35_970x90.JPG",
+        "/src/img/j30_970x90.jpg",
+        "/src/img/j37_970x90.jpg",
+        "/src/img/j9_970x90.png"
       ],
       "matches": [
         "http://*/*",
