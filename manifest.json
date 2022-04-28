@@ -1,0 +1,54 @@
+{
+    "name": "Jensen Ads",
+    "description": "Replace ads with Jensen",
+    "version": "0.2",
+    "manifest_version": 3,
+    "background": {
+      "service_worker": "src/background.js"
+    },
+    "host_permissions": [
+        "http://*/*",
+        "https://*/*"
+    ],
+    "permissions": [
+      "activeTab",
+      "tabs",
+      "storage"
+    ],
+    "content_scripts": [
+      {
+        "matches": [
+            "http://*/*",
+            "https://*/*"
+        ],
+        "js": ["src/content_scripts/jensen.js"]
+      }
+    ],
+    "web_accessible_resources": [
+      {
+        "resources": [
+          "/src/img/j1_300x600.png",
+          "/src/img/j2_300x600.png",
+          "/src/img/j3_300x250.jpg",
+          "/src/img/j4_300x600.jpg",
+          "/src/img/j5_300x250.jpg",
+          "/src/img/j6_300x250.jpg",
+          "/src/img/j7_300x600.png",
+          "/src/img/j8_300x600.png",
+          "/src/img/j9_728x90.png",
+          "/src/img/j10_728x90.jpg",
+          "/src/img/j11_970x250.jpg",
+          "/src/img/j12_160x600.jpg",
+          "/src/img/j13_160x600.png",
+          "/src/img/j14_300x250.png"
+        ],
+        "matches": [
+          "http://*/*",
+          "https://*/*"
+        ]
+      }
+    ],
+    "action": {
+      "default_popup": "src/popup/popup.html"
+    }
+  }
