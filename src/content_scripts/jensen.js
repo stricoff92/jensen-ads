@@ -12,7 +12,7 @@ log("hi");
 let scanning = false;
 const main = () => {
     log("main()");
-    setInterval(scanForAds, 1500);
+    scanForAds()
 };
 window.addEventListener("load", main, false);
 
@@ -89,6 +89,8 @@ const scanForAds = async () => {
         img.style.height = frame.height;
         frame.replaceWith(img);
     }
+
+    setTimeout(scanForAds, 500);
 };
 
 function getFileName(files, size) {
