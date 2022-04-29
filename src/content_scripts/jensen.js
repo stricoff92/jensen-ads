@@ -11,7 +11,7 @@ log("hi");
 
 const main = () => {
     log("main()");
-    scanForAds()
+    scanForBannerAds()
 };
 window.addEventListener("load", main, false);
 
@@ -26,12 +26,12 @@ const getActive = async () => { return new Promise(resolve => {
     });
 })};
 
-const scanForAds = async () => {
+const scanForBannerAds = async () => {
     const active = await getActive();
     if(!active) {
         return;
     }
-    log("scanForAds()");
+    log("scanForBannerAds()");
 
     /* Array<Element>
         returns array of iframes
@@ -76,10 +76,10 @@ const scanForAds = async () => {
         let imgW;
         let imgH;
         let frame = adFrames[i];
-        let fileName = getFileName(files, [frame.width, frame.height]);
+        let fileName = getBannerAdFileName(files, [frame.width, frame.height]);
         if(!fileName) {
             log("could not find replacement for (f)size " + frame.width + "x" + frame.height)
-            fileName = getFileName(files, [cssWidthPx(frame), cssHeightPx(frame)]);
+            fileName = getBannerAdFileName(files, [cssWidthPx(frame), cssHeightPx(frame)]);
             if(!fileName) {
                 log("could not find replacement for (c)size " + cssWidthPx(frame) + "x" + cssHeightPx(frame))
                 continue;
@@ -107,10 +107,10 @@ const scanForAds = async () => {
         frame.replaceWith(img);
     }
 
-    setTimeout(scanForAds, 500);
+    setTimeout(scanForBannerAds, 500);
 };
 
-function getFileName(files, size) {
+function getBannerAdFileName(files, size) {
     let filesToUse = [];
     for(let i in files) {
         let fSize = fileNameToSizeArray(files[i]);
@@ -127,26 +127,15 @@ function getFileName(files, size) {
 }
 
 function isAdIframe(frame) {
-    if((frame.id || "").toLowerCase().indexOf("ads") != -1) {
-        return true;
-    }
-    if((frame.id || "").toLowerCase().indexOf("safeframe") != -1) {
-        return true;
-    }
     if((frame.title || "").toLowerCase().indexOf("advertisement") != -1) {
         return true;
     }
-    const srcParts = [
-        "doubleclick",
-        "2mdn",
-        "criteo",
-        "yimg",
-        "safeframe",
-    ];
-    for(let i=0; i<srcParts.length; i++) {
-        if((frame.src || "").toLowerCase().indexOf(srcParts[i]) != -1) {
-            return true;
-        }
+    const searchPatt = /(doubleclick|2mdn|criteo|yimg|safeframe|ads|adnxs)/;
+    if(searchPatt.test((frame.id || "").toLowerCase())) {
+        return true;
+    }
+    if(searchPatt.test((frame.src || "").toLowerCase())) {
+        return true;
     }
 
     console.log({notAnAdFrame:{
